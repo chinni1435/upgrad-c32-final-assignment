@@ -13,7 +13,7 @@ pipeline {
     }
     stage ('Docker build and Push') {
       steps {
-        scripts {
+        script {
             sh '''
                 pwd
                 ls
