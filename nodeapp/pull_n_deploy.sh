@@ -7,7 +7,7 @@
 docker_pull="sudo docker pull $1:$2"
 docker_stop="sudo docker stop $3"
 docker_rm="sudo docker rm nodeapp"
-docker_run="sudo docker run -p 8081:8080 -d --name $3 $1:$2"
+docker_run="sudo docker run -p 8080:8080 -d --name $3 $1:$2"
 docker_login=$(sudo aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 374590584164.dkr.ecr.us-east-1.amazonaws.com)
 
 # Do a docker pull
