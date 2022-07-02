@@ -1,8 +1,8 @@
 pipeline {
   agent any
   environment {
-        registry = "374590584164.dkr.ecr.us-east-1.amazonaws.com/upgrad-assignment"
-        name = "nodeapp"
+        REGISTRY = "374590584164.dkr.ecr.us-east-1.amazonaws.com/upgrad-assignment"
+        NAME = "nodeapp"
     }
     
   stages {
@@ -16,7 +16,7 @@ pipeline {
             sh 'cd /home/ubuntu/upgrad-c32-final-assignment'
             sh 'sudo docker build . -t ${registry}:${env.BUILD_NUMBER}'
             sh 'sudo aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 374590584164.dkr.ecr.us-east-1.amazonaws.com'
-            sh 'sudo docker push ${registry}:${env.BUILD_NUMBER}'
+            sh 'sudo docker push ${REGISTRY}:${env.BUILD_NUMBER}'
       }
     
     }
@@ -26,7 +26,7 @@ pipeline {
               sh ''' 
                ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@10.0.1.59 
                '
-                  sudo docker pull ${registry}:${env.BUILD_NUMBER}
+                  sh 'cd /home/ubuntu/ && sh pull_n_deploy.sh ${REGISTRY} ${env.BUILD_NUMBER} ${NAME}'
                   
                '
               
