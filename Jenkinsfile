@@ -17,7 +17,7 @@ pipeline {
             sh '''
                 pwd
                 ls
-                cd ./nodeapp
+                cd nodeapp
                 sudo docker build . -t ${registry}:${env.BUILD_NUMBER}
                 sudo aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 374590584164.dkr.ecr.us-east-1.amazonaws.com
                 sudo docker push ${REGISTRY}:${env.BUILD_NUMBER}
