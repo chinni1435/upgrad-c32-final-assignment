@@ -35,8 +35,7 @@ pipeline {
            script {
              sshagent(credentials : ['ssh key']){
 
-                sh '
-                ssh -o StrictHostKeyChecking=no -l ubuntu 10.0.1.59 
+                sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 10.0.1.59 
                 cd /home/ubuntu/ 
                 sh pull_n_deploy.sh ${REGISTRY} ${BUILD_NUMBER} ${NAME}
                 '
