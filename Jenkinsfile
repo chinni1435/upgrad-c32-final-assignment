@@ -31,14 +31,18 @@ pipeline {
     stage ('Docker Deployment') {
       steps {
         script {
-              sh ''' 
-               ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@10.0.1.59 
-               '
-                  sh 'cd /home/ubuntu/ && sh pull_n_deploy.sh ${REGISTRY} ${BUILD_NUMBER} ${NAME}'
-                  
-               '
-              
-              '''       
+          
+           script {
+             sshagent(credentials : ['ssh key']){
+
+                sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 10.0.1.59 '
+
+             }
+        
+                ssh 'cd /home/ubuntu/ && sh pull_n_deploy.sh ${REGISTRY} ${BUILD_NUMBER} ${NAME}'
+            }
+          
+          
         }
       
       }
