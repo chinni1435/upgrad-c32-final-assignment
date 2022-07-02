@@ -15,7 +15,7 @@ pipeline {
       steps {
             sh 'pwd'
             sh 'ls'
-            sh 'cd /home/ubuntu/upgrad-c32-final-assignment'
+            sh 'cd $NAME'
             sh 'sudo docker build . -t ${registry}:${env.BUILD_NUMBER}'
             sh 'sudo aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 374590584164.dkr.ecr.us-east-1.amazonaws.com'
             sh 'sudo docker push ${REGISTRY}:${env.BUILD_NUMBER}'
