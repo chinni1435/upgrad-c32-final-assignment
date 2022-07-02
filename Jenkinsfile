@@ -18,9 +18,10 @@ pipeline {
                 pwd
                 ls
                 cd nodeapp
-                sudo docker build . -t ${registry}:${env.BUILD_NUMBER}
+                ls
+                sudo docker build . -t ${registry}:${BUILD_NUMBER}
                 sudo aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 374590584164.dkr.ecr.us-east-1.amazonaws.com
-                sudo docker push ${REGISTRY}:${env.BUILD_NUMBER}
+                sudo docker push ${REGISTRY}:${BUILD_NUMBER}
                 
                '''  
         }
@@ -33,7 +34,7 @@ pipeline {
               sh ''' 
                ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@10.0.1.59 
                '
-                  sh 'cd /home/ubuntu/ && sh pull_n_deploy.sh ${REGISTRY} ${env.BUILD_NUMBER} ${NAME}'
+                  sh 'cd /home/ubuntu/ && sh pull_n_deploy.sh ${REGISTRY} ${BUILD_NUMBER} ${NAME}'
                   
                '
               
