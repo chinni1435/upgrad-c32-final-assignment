@@ -1,6 +1,9 @@
 #!/usr/bash
 
-
+# $1 is the repo name 
+# $2 is the tag
+# $3 is the servie name service container starts
+ 
 docker_pull="sudo docker pull $1:$2"
 docker_stop="sudo docker stop $3"
 docker_rm="sudo docker rm nodeapp"
