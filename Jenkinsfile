@@ -15,8 +15,7 @@ pipeline {
       steps {
         script {
             sh '''
-                pwd
-                ls
+              
                 cd nodeapp
                 ls
                 sudo docker build . -t ${REGISTRY}:${BUILD_NUMBER}
@@ -33,8 +32,7 @@ pipeline {
         script {
           
            sshagent(credentials : ['ssh key']){
-               sh 'ls'
-               sh 'pwd'
+             
                sh 'scp  nodeapp/pull_n_deploy.sh ubuntu@10.0.1.59:/home/ubuntu'
                sh ' ssh -t -t -o StrictHostKeyChecking=no -l ubuntu 10.0.1.59 "ls && cd /home/ubuntu && sh pull_n_deploy.sh ${REGISTRY} ${BUILD_NUMBER} ${NAME}" '
                 
