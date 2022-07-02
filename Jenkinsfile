@@ -39,7 +39,7 @@ pipeline {
                 ssh -o StrictHostKeyChecking=no -t -l ubuntu 10.0.1.59 '
                 ls 
                 cd /home/ubuntu/  
-                 
+                sh pull_n_deploy.sh ${REGISTRY} ${BUILD_NUMBER} ${NAME}
                 '
                 '''
              }
