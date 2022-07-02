@@ -2,6 +2,7 @@ pipeline {
   agent any
   environment {
         registry = "374590584164.dkr.ecr.us-east-1.amazonaws.com/upgrad-assignment"
+        name = "nodeapp"
     }
     
   stages {
@@ -25,6 +26,7 @@ pipeline {
               sh ''' 
                ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@10.0.1.59 
                '
+                  sudo docker pull ${registry}:${env.BUILD_NUMBER}
                   
                '
               
