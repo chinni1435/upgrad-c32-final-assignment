@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent {label 'worker'}
   environment {
         REGISTRY = "374590584164.dkr.ecr.us-east-1.amazonaws.com/upgrad-assignment"
         NAME = "nodeapp"
