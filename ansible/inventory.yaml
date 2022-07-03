@@ -1,0 +1,2 @@
+10.0.1.59 ansible_ssh_private_key_file="/home/ubuntu/myec2key.pem" ansible_user_ssh=ubuntu
+10.0.1.19 ansible_ssh_private_key_file="/home/ubuntu/myec2key.pem" ansible_user_ssh=ubuntu
